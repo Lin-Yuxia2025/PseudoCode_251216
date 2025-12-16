@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
+    "dev:flask": "python api/index.py",
     "build": "next build",
     "start": "next start",
     "lint": "next lint"
@@ -15,5 +16,8 @@
     "react": "19.1.2",
     "react-ace": "^14.0.1",
     "react-dom": "19.1.2"
+  },
+  "devDependencies": {
+    "concurrently": "^9.2.1"
   }
 }
