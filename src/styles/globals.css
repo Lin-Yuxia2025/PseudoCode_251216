@@ -1,0 +1,53 @@
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}
+
+html,
+body {
+  max-width: 100vw;
+  overflow-x: hidden;
+}
+
+body {
+  color: var(--foreground);
+  background: var(--background);
+  font-family: Arial, Helvetica, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+@media (prefers-color-scheme: dark) {
+  html {
+    color-scheme: dark;
+  }
+}
+
+/* Ace Editor */
+.ace_gutter-cell.next-line-marker {
+  background: #fff7cc;     /* gutter-cell(行番号部分)の背景色 */
+  font-weight: bold;         /* フォント(太字) */
+}
+.ace_gutter-cell.next-line-marker::before {
+  content: '▶';
+  position: absolute;   /* セル内で絶対配置 */
+  left: 8px;
+}

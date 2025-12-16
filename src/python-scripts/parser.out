@@ -1,0 +1,2252 @@
+Created by PLY version 3.11 (http://www.dabeaz.com/ply)
+
+Grammar
+
+Rule 0     S' -> statement
+Rule 1     statement -> <empty>
+Rule 2     statement -> TYPE COLON decl_names
+Rule 3     decl_names -> NAME decl_names_m
+Rule 4     decl_names_m -> COMMA NAME decl_names_m
+Rule 5     decl_names_m -> <empty>
+Rule 6     statement -> TYPE COLON NAME ASSIGN value
+Rule 7     statement -> NAME ASSIGN value
+Rule 8     statement -> TYPE NO ARRAY COLON NAME ASSIGN init_array
+Rule 9     init_array -> L_C_BRACKET R_C_BRACKET
+Rule 10    init_array -> L_C_BRACKET init_array_val R_C_BRACKET
+Rule 11    init_array_val -> init_array_val COMMA NUMBER
+Rule 12    init_array_val -> NUMBER
+Rule 13    statement -> NAME L_S_BRACKET value R_S_BRACKET ASSIGN value
+Rule 14    statement -> NAME NO END NI value WO ADD
+Rule 15    statement -> value WO OUT
+Rule 16    params -> <empty>
+Rule 17    params -> TYPE COLON NAME params_m
+Rule 18    params -> TYPE NO ARRAY COLON NAME params_m
+Rule 19    params_m -> COMMA TYPE COLON NAME params_m
+Rule 20    params_m -> COMMA TYPE NO ARRAY COLON NAME params_m
+Rule 21    params_m -> <empty>
+Rule 22    statement -> CIRCLE NAME L_PAREN params R_PAREN
+Rule 23    statement -> CIRCLE TYPE COLON NAME L_PAREN params R_PAREN
+Rule 24    statement -> CIRCLE TYPE NO ARRAY COLON NAME L_PAREN params R_PAREN
+Rule 25    args -> <empty>
+Rule 26    args -> value args_m
+Rule 27    args_m -> COMMA value args_m
+Rule 28    args_m -> <empty>
+Rule 29    statement -> NAME L_PAREN args R_PAREN
+Rule 30    statement -> NAME ASSIGN NAME L_PAREN args R_PAREN
+Rule 31    statement -> TYPE COLON NAME ASSIGN NAME L_PAREN args R_PAREN
+Rule 32    statement -> RETURN
+Rule 33    statement -> RETURN value
+Rule 34    statement -> IF L_PAREN conditional R_PAREN
+Rule 35    statement -> ELSEIF L_PAREN conditional R_PAREN
+Rule 36    statement -> ELSE
+Rule 37    statement -> ENDIF
+Rule 38    conditional -> value sign value
+Rule 39    sign -> EQUAL
+Rule 40    sign -> NOT EQUAL
+Rule 41    sign -> NOT2
+Rule 42    sign -> LESS
+Rule 43    sign -> LESS EQUAL
+Rule 44    sign -> LESS_EQUAL
+Rule 45    sign -> GREATER
+Rule 46    sign -> GREATER EQUAL
+Rule 47    sign -> GREATER_EQUAL
+Rule 48    statement -> FOR L_PAREN NAME WO value KARA value MADE NUMBER ZUTSU INCREASE R_PAREN
+Rule 49    statement -> WHILE L_PAREN conditional R_PAREN
+Rule 50    statement -> DO
+Rule 51    value -> NUMBER
+Rule 52    value -> NAME
+Rule 53    value -> NAME L_S_BRACKET value R_S_BRACKET
+Rule 54    value -> NAME L_S_BRACKET value R_S_BRACKET NO VALUE
+Rule 55    value -> NAME NO ARR_LEN
+Rule 56    value -> L_PAREN value R_PAREN
+Rule 57    value -> L_PAREN value R_PAREN NO RESULT
+Rule 58    value -> value PLUS value
+Rule 59    value -> value MINUS value
+Rule 60    value -> value MULTI value
+Rule 61    value -> value DIVID value division_tail
+Rule 62    division_tail -> NO SHOW
+Rule 63    division_tail -> <empty>
+
+Terminals, with rules where they appear
+
+ADD                  : 14
+ARRAY                : 8 18 20 24
+ARR_LEN              : 55
+ASSIGN               : 6 7 8 13 30 31
+CIRCLE               : 22 23 24
+COLON                : 2 6 8 17 18 19 20 23 24 31
+COMMA                : 4 11 19 20 27
+DIVID                : 61
+DO                   : 50
+ELSE                 : 36
+ELSEIF               : 35
+END                  : 14
+ENDIF                : 37
+EQUAL                : 39 40 43 46
+FOR                  : 48
+GREATER              : 45 46
+GREATER_EQUAL        : 47
+IF                   : 34
+INCREASE             : 48
+KARA                 : 48
+LESS                 : 42 43
+LESS_EQUAL           : 44
+L_C_BRACKET          : 9 10
+L_PAREN              : 22 23 24 29 30 31 34 35 48 49 56 57
+L_S_BRACKET          : 13 53 54
+MADE                 : 48
+MINUS                : 59
+MULTI                : 60
+NAME                 : 3 4 6 7 8 13 14 17 18 19 20 22 23 24 29 30 30 31 31 48 52 53 54 55
+NI                   : 14
+NO                   : 8 14 18 20 24 54 55 57 62
+NOT                  : 40
+NOT2                 : 41
+NUMBER               : 11 12 48 51
+OUT                  : 15
+PLUS                 : 58
+RESULT               : 57
+RETURN               : 32 33
+R_C_BRACKET          : 9 10
+R_PAREN              : 22 23 24 29 30 31 34 35 48 49 56 57
+R_S_BRACKET          : 13 53 54
+SHOW                 : 62
+TYPE                 : 2 6 8 17 18 19 20 23 24 31
+VALUE                : 54
+WHILE                : 49
+WO                   : 14 15 48
+ZUTSU                : 48
+error                : 
+
+Nonterminals, with rules where they appear
+
+args                 : 29 30 31
+args_m               : 26 27
+conditional          : 34 35 49
+decl_names           : 2
+decl_names_m         : 3 4
+division_tail        : 61
+init_array           : 8
+init_array_val       : 10 11
+params               : 22 23 24
+params_m             : 17 18 19 20
+sign                 : 38
+statement            : 0
+value                : 6 7 13 13 14 15 26 27 33 38 38 48 48 53 54 56 57 58 58 59 59 60 60 61 61
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . statement
+    (1) statement -> .
+    (2) statement -> . TYPE COLON decl_names
+    (6) statement -> . TYPE COLON NAME ASSIGN value
+    (7) statement -> . NAME ASSIGN value
+    (8) statement -> . TYPE NO ARRAY COLON NAME ASSIGN init_array
+    (13) statement -> . NAME L_S_BRACKET value R_S_BRACKET ASSIGN value
+    (14) statement -> . NAME NO END NI value WO ADD
+    (15) statement -> . value WO OUT
+    (22) statement -> . CIRCLE NAME L_PAREN params R_PAREN
+    (23) statement -> . CIRCLE TYPE COLON NAME L_PAREN params R_PAREN
+    (24) statement -> . CIRCLE TYPE NO ARRAY COLON NAME L_PAREN params R_PAREN
+    (29) statement -> . NAME L_PAREN args R_PAREN
+    (30) statement -> . NAME ASSIGN NAME L_PAREN args R_PAREN
+    (31) statement -> . TYPE COLON NAME ASSIGN NAME L_PAREN args R_PAREN
+    (32) statement -> . RETURN
+    (33) statement -> . RETURN value
+    (34) statement -> . IF L_PAREN conditional R_PAREN
+    (35) statement -> . ELSEIF L_PAREN conditional R_PAREN
+    (36) statement -> . ELSE
+    (37) statement -> . ENDIF
+    (48) statement -> . FOR L_PAREN NAME WO value KARA value MADE NUMBER ZUTSU INCREASE R_PAREN
+    (49) statement -> . WHILE L_PAREN conditional R_PAREN
+    (50) statement -> . DO
+    (51) value -> . NUMBER
+    (52) value -> . NAME
+    (53) value -> . NAME L_S_BRACKET value R_S_BRACKET
+    (54) value -> . NAME L_S_BRACKET value R_S_BRACKET NO VALUE
+    (55) value -> . NAME NO ARR_LEN
+    (56) value -> . L_PAREN value R_PAREN
+    (57) value -> . L_PAREN value R_PAREN NO RESULT
+    (58) value -> . value PLUS value
+    (59) value -> . value MINUS value
+    (60) value -> . value MULTI value
+    (61) value -> . value DIVID value division_tail
+
+    $end            reduce using rule 1 (statement -> .)
+    TYPE            shift and go to state 2
+    NAME            shift and go to state 3
+    CIRCLE          shift and go to state 5
+    RETURN          shift and go to state 7
+    IF              shift and go to state 8
+    ELSEIF          shift and go to state 9
+    ELSE            shift and go to state 10
+    ENDIF           shift and go to state 11
+    FOR             shift and go to state 12
+    WHILE           shift and go to state 14
+    DO              shift and go to state 15
+    NUMBER          shift and go to state 13
+    L_PAREN         shift and go to state 6
+
+    statement                      shift and go to state 1
+    value                          shift and go to state 4
+
+state 1
+
+    (0) S' -> statement .
+
+
+
+state 2
+
+    (2) statement -> TYPE . COLON decl_names
+    (6) statement -> TYPE . COLON NAME ASSIGN value
+    (8) statement -> TYPE . NO ARRAY COLON NAME ASSIGN init_array
+    (31) statement -> TYPE . COLON NAME ASSIGN NAME L_PAREN args R_PAREN
+
+    COLON           shift and go to state 16
+    NO              shift and go to state 17
+
+
+state 3
+
+    (7) statement -> NAME . ASSIGN value
+    (13) statement -> NAME . L_S_BRACKET value R_S_BRACKET ASSIGN value
+    (14) statement -> NAME . NO END NI value WO ADD
+    (29) statement -> NAME . L_PAREN args R_PAREN
+    (30) statement -> NAME . ASSIGN NAME L_PAREN args R_PAREN
+    (52) value -> NAME .
+    (53) value -> NAME . L_S_BRACKET value R_S_BRACKET
+    (54) value -> NAME . L_S_BRACKET value R_S_BRACKET NO VALUE
+    (55) value -> NAME . NO ARR_LEN
+
+    ASSIGN          shift and go to state 18
+    L_S_BRACKET     shift and go to state 19
+    NO              shift and go to state 20
+    L_PAREN         shift and go to state 21
+    WO              reduce using rule 52 (value -> NAME .)
+    PLUS            reduce using rule 52 (value -> NAME .)
+    MINUS           reduce using rule 52 (value -> NAME .)
+    MULTI           reduce using rule 52 (value -> NAME .)
+    DIVID           reduce using rule 52 (value -> NAME .)
+
+
+state 4
+
+    (15) statement -> value . WO OUT
+    (58) value -> value . PLUS value
+    (59) value -> value . MINUS value
+    (60) value -> value . MULTI value
+    (61) value -> value . DIVID value division_tail
+
+    WO              shift and go to state 22
+    PLUS            shift and go to state 23
+    MINUS           shift and go to state 24
+    MULTI           shift and go to state 25
+    DIVID           shift and go to state 26
+
+
+state 5
+
+    (22) statement -> CIRCLE . NAME L_PAREN params R_PAREN
+    (23) statement -> CIRCLE . TYPE COLON NAME L_PAREN params R_PAREN
+    (24) statement -> CIRCLE . TYPE NO ARRAY COLON NAME L_PAREN params R_PAREN
+
+    NAME            shift and go to state 27
+    TYPE            shift and go to state 28
+
+
+state 6
+
+    (56) value -> L_PAREN . value R_PAREN
+    (57) value -> L_PAREN . value R_PAREN NO RESULT
+    (51) value -> . NUMBER
+    (52) value -> . NAME
+    (53) value -> . NAME L_S_BRACKET value R_S_BRACKET
+    (54) value -> . NAME L_S_BRACKET value R_S_BRACKET NO VALUE
+    (55) value -> . NAME NO ARR_LEN
+    (56) value -> . L_PAREN value R_PAREN
+    (57) value -> . L_PAREN value R_PAREN NO RESULT
+    (58) value -> . value PLUS value
+    (59) value -> . value MINUS value
+    (60) value -> . value MULTI value
+    (61) value -> . value DIVID value division_tail
+
+    NUMBER          shift and go to state 13
+    NAME            shift and go to state 30
+    L_PAREN         shift and go to state 6
+
+    value                          shift and go to state 29
+
+state 7
+
+    (32) statement -> RETURN .
+    (33) statement -> RETURN . value
+    (51) value -> . NUMBER
+    (52) value -> . NAME
+    (53) value -> . NAME L_S_BRACKET value R_S_BRACKET
+    (54) value -> . NAME L_S_BRACKET value R_S_BRACKET NO VALUE
+    (55) value -> . NAME NO ARR_LEN
+    (56) value -> . L_PAREN value R_PAREN
+    (57) value -> . L_PAREN value R_PAREN NO RESULT
+    (58) value -> . value PLUS value
+    (59) value -> . value MINUS value
+    (60) value -> . value MULTI value
+    (61) value -> . value DIVID value division_tail
+
+    $end            reduce using rule 32 (statement -> RETURN .)
+    NUMBER          shift and go to state 13
+    NAME            shift and go to state 30
+    L_PAREN         shift and go to state 6
+
+    value                          shift and go to state 31
+
+state 8
+
+    (34) statement -> IF . L_PAREN conditional R_PAREN
+
+    L_PAREN         shift and go to state 32
+
+
+state 9
+
+    (35) statement -> ELSEIF . L_PAREN conditional R_PAREN
+
+    L_PAREN         shift and go to state 33
+
+
+state 10
+
+    (36) statement -> ELSE .
+
+    $end            reduce using rule 36 (statement -> ELSE .)
+
+
+state 11
+
+    (37) statement -> ENDIF .
+
+    $end            reduce using rule 37 (statement -> ENDIF .)
+
+
+state 12
+
+    (48) statement -> FOR . L_PAREN NAME WO value KARA value MADE NUMBER ZUTSU INCREASE R_PAREN
+
+    L_PAREN         shift and go to state 34
+
+
+state 13
+
+    (51) value -> NUMBER .
+
+    WO              reduce using rule 51 (value -> NUMBER .)
+    PLUS            reduce using rule 51 (value -> NUMBER .)
+    MINUS           reduce using rule 51 (value -> NUMBER .)
+    MULTI           reduce using rule 51 (value -> NUMBER .)
+    DIVID           reduce using rule 51 (value -> NUMBER .)
+    R_PAREN         reduce using rule 51 (value -> NUMBER .)
+    $end            reduce using rule 51 (value -> NUMBER .)
+    R_S_BRACKET     reduce using rule 51 (value -> NUMBER .)
+    COMMA           reduce using rule 51 (value -> NUMBER .)
+    NO              reduce using rule 51 (value -> NUMBER .)
+    EQUAL           reduce using rule 51 (value -> NUMBER .)
+    NOT             reduce using rule 51 (value -> NUMBER .)
+    NOT2            reduce using rule 51 (value -> NUMBER .)
+    LESS            reduce using rule 51 (value -> NUMBER .)
+    LESS_EQUAL      reduce using rule 51 (value -> NUMBER .)
+    GREATER         reduce using rule 51 (value -> NUMBER .)
+    GREATER_EQUAL   reduce using rule 51 (value -> NUMBER .)
+    KARA            reduce using rule 51 (value -> NUMBER .)
+    MADE            reduce using rule 51 (value -> NUMBER .)
+
+
+state 14
+
+    (49) statement -> WHILE . L_PAREN conditional R_PAREN
+
+    L_PAREN         shift and go to state 35
+
+
+state 15
+
+    (50) statement -> DO .
+
+    $end            reduce using rule 50 (statement -> DO .)
+
+
+state 16
+
+    (2) statement -> TYPE COLON . decl_names
+    (6) statement -> TYPE COLON . NAME ASSIGN value
+    (31) statement -> TYPE COLON . NAME ASSIGN NAME L_PAREN args R_PAREN
+    (3) decl_names -> . NAME decl_names_m
+
+    NAME            shift and go to state 37
+
+    decl_names                     shift and go to state 36
+
+state 17
+
+    (8) statement -> TYPE NO . ARRAY COLON NAME ASSIGN init_array
+
+    ARRAY           shift and go to state 38
+
+
+state 18
+
+    (7) statement -> NAME ASSIGN . value
+    (30) statement -> NAME ASSIGN . NAME L_PAREN args R_PAREN
+    (51) value -> . NUMBER
+    (52) value -> . NAME
+    (53) value -> . NAME L_S_BRACKET value R_S_BRACKET
+    (54) value -> . NAME L_S_BRACKET value R_S_BRACKET NO VALUE
+    (55) value -> . NAME NO ARR_LEN
+    (56) value -> . L_PAREN value R_PAREN
+    (57) value -> . L_PAREN value R_PAREN NO RESULT
+    (58) value -> . value PLUS value
+    (59) value -> . value MINUS value
+    (60) value -> . value MULTI value
+    (61) value -> . value DIVID value division_tail
+
+    NAME            shift and go to state 39
+    NUMBER          shift and go to state 13
+    L_PAREN         shift and go to state 6
+
+    value                          shift and go to state 40
+
+state 19
+
+    (13) statement -> NAME L_S_BRACKET . value R_S_BRACKET ASSIGN value
+    (53) value -> NAME L_S_BRACKET . value R_S_BRACKET
+    (54) value -> NAME L_S_BRACKET . value R_S_BRACKET NO VALUE
+    (51) value -> . NUMBER
+    (52) value -> . NAME
+    (53) value -> . NAME L_S_BRACKET value R_S_BRACKET
+    (54) value -> . NAME L_S_BRACKET value R_S_BRACKET NO VALUE
+    (55) value -> . NAME NO ARR_LEN
+    (56) value -> . L_PAREN value R_PAREN
+    (57) value -> . L_PAREN value R_PAREN NO RESULT
+    (58) value -> . value PLUS value
+    (59) value -> . value MINUS value
+    (60) value -> . value MULTI value
+    (61) value -> . value DIVID value division_tail
+
+    NUMBER          shift and go to state 13
+    NAME            shift and go to state 30
+    L_PAREN         shift and go to state 6
+
+    value                          shift and go to state 41
+
+state 20
+
+    (14) statement -> NAME NO . END NI value WO ADD
+    (55) value -> NAME NO . ARR_LEN
+
+    END             shift and go to state 42
+    ARR_LEN         shift and go to state 43
+
+
+state 21
+
+    (29) statement -> NAME L_PAREN . args R_PAREN
+    (25) args -> .
+    (26) args -> . value args_m
+    (51) value -> . NUMBER
+    (52) value -> . NAME
+    (53) value -> . NAME L_S_BRACKET value R_S_BRACKET
+    (54) value -> . NAME L_S_BRACKET value R_S_BRACKET NO VALUE
+    (55) value -> . NAME NO ARR_LEN
+    (56) value -> . L_PAREN value R_PAREN
+    (57) value -> . L_PAREN value R_PAREN NO RESULT
+    (58) value -> . value PLUS value
+    (59) value -> . value MINUS value
+    (60) value -> . value MULTI value
+    (61) value -> . value DIVID value division_tail
+
+    R_PAREN         reduce using rule 25 (args -> .)
+    NUMBER          shift and go to state 13
+    NAME            shift and go to state 30
+    L_PAREN         shift and go to state 6
+
+    args                           shift and go to state 44
+    value                          shift and go to state 45
+
+state 22
+
+    (15) statement -> value WO . OUT
+
+    OUT             shift and go to state 46
+
+
+state 23
+
+    (58) value -> value PLUS . value
+    (51) value -> . NUMBER
+    (52) value -> . NAME
+    (53) value -> . NAME L_S_BRACKET value R_S_BRACKET
+    (54) value -> . NAME L_S_BRACKET value R_S_BRACKET NO VALUE
+    (55) value -> . NAME NO ARR_LEN
+    (56) value -> . L_PAREN value R_PAREN
+    (57) value -> . L_PAREN value R_PAREN NO RESULT
+    (58) value -> . value PLUS value
+    (59) value -> . value MINUS value
+    (60) value -> . value MULTI value
+    (61) value -> . value DIVID value division_tail
+
+    NUMBER          shift and go to state 13
+    NAME            shift and go to state 30
+    L_PAREN         shift and go to state 6
+
+    value                          shift and go to state 47
+
+state 24
+
+    (59) value -> value MINUS . value
+    (51) value -> . NUMBER
+    (52) value -> . NAME
+    (53) value -> . NAME L_S_BRACKET value R_S_BRACKET
+    (54) value -> . NAME L_S_BRACKET value R_S_BRACKET NO VALUE
+    (55) value -> . NAME NO ARR_LEN
+    (56) value -> . L_PAREN value R_PAREN
+    (57) value -> . L_PAREN value R_PAREN NO RESULT
+    (58) value -> . value PLUS value
+    (59) value -> . value MINUS value
+    (60) value -> . value MULTI value
+    (61) value -> . value DIVID value division_tail
+
+    NUMBER          shift and go to state 13
+    NAME            shift and go to state 30
+    L_PAREN         shift and go to state 6
+
+    value                          shift and go to state 48
+
+state 25
+
+    (60) value -> value MULTI . value
+    (51) value -> . NUMBER
+    (52) value -> . NAME
+    (53) value -> . NAME L_S_BRACKET value R_S_BRACKET
+    (54) value -> . NAME L_S_BRACKET value R_S_BRACKET NO VALUE
+    (55) value -> . NAME NO ARR_LEN
+    (56) value -> . L_PAREN value R_PAREN
+    (57) value -> . L_PAREN value R_PAREN NO RESULT
+    (58) value -> . value PLUS value
+    (59) value -> . value MINUS value
+    (60) value -> . value MULTI value
+    (61) value -> . value DIVID value division_tail
+
+    NUMBER          shift and go to state 13
+    NAME            shift and go to state 30
+    L_PAREN         shift and go to state 6
+
+    value                          shift and go to state 49
+
+state 26
+
+    (61) value -> value DIVID . value division_tail
+    (51) value -> . NUMBER
+    (52) value -> . NAME
+    (53) value -> . NAME L_S_BRACKET value R_S_BRACKET
+    (54) value -> . NAME L_S_BRACKET value R_S_BRACKET NO VALUE
+    (55) value -> . NAME NO ARR_LEN
+    (56) value -> . L_PAREN value R_PAREN
+    (57) value -> . L_PAREN value R_PAREN NO RESULT
+    (58) value -> . value PLUS value
+    (59) value -> . value MINUS value
+    (60) value -> . value MULTI value
+    (61) value -> . value DIVID value division_tail
+
+    NUMBER          shift and go to state 13
+    NAME            shift and go to state 30
+    L_PAREN         shift and go to state 6
+
+    value                          shift and go to state 50
+
+state 27
+
+    (22) statement -> CIRCLE NAME . L_PAREN params R_PAREN
+
+    L_PAREN         shift and go to state 51
+
+
+state 28
+
+    (23) statement -> CIRCLE TYPE . COLON NAME L_PAREN params R_PAREN
+    (24) statement -> CIRCLE TYPE . NO ARRAY COLON NAME L_PAREN params R_PAREN
+
+    COLON           shift and go to state 52
+    NO              shift and go to state 53
+
+
+state 29
+
+    (56) value -> L_PAREN value . R_PAREN
+    (57) value -> L_PAREN value . R_PAREN NO RESULT
+    (58) value -> value . PLUS value
+    (59) value -> value . MINUS value
+    (60) value -> value . MULTI value
+    (61) value -> value . DIVID value division_tail
+
+    R_PAREN         shift and go to state 54
+    PLUS            shift and go to state 23
+    MINUS           shift and go to state 24
+    MULTI           shift and go to state 25
+    DIVID           shift and go to state 26
+
+
+state 30
+
+    (52) value -> NAME .
+    (53) value -> NAME . L_S_BRACKET value R_S_BRACKET
+    (54) value -> NAME . L_S_BRACKET value R_S_BRACKET NO VALUE
+    (55) value -> NAME . NO ARR_LEN
+
+  ! shift/reduce conflict for NO resolved as shift
+    R_PAREN         reduce using rule 52 (value -> NAME .)
+    PLUS            reduce using rule 52 (value -> NAME .)
+    MINUS           reduce using rule 52 (value -> NAME .)
+    MULTI           reduce using rule 52 (value -> NAME .)
+    DIVID           reduce using rule 52 (value -> NAME .)
+    $end            reduce using rule 52 (value -> NAME .)
+    R_S_BRACKET     reduce using rule 52 (value -> NAME .)
+    COMMA           reduce using rule 52 (value -> NAME .)
+    WO              reduce using rule 52 (value -> NAME .)
+    EQUAL           reduce using rule 52 (value -> NAME .)
+    NOT             reduce using rule 52 (value -> NAME .)
+    NOT2            reduce using rule 52 (value -> NAME .)
+    LESS            reduce using rule 52 (value -> NAME .)
+    LESS_EQUAL      reduce using rule 52 (value -> NAME .)
+    GREATER         reduce using rule 52 (value -> NAME .)
+    GREATER_EQUAL   reduce using rule 52 (value -> NAME .)
+    KARA            reduce using rule 52 (value -> NAME .)
+    MADE            reduce using rule 52 (value -> NAME .)
+    L_S_BRACKET     shift and go to state 55
+    NO              shift and go to state 56
+
+  ! NO              [ reduce using rule 52 (value -> NAME .) ]
+
+
+state 31
+
+    (33) statement -> RETURN value .
+    (58) value -> value . PLUS value
+    (59) value -> value . MINUS value
+    (60) value -> value . MULTI value
+    (61) value -> value . DIVID value division_tail
+
+    $end            reduce using rule 33 (statement -> RETURN value .)
+    PLUS            shift and go to state 23
+    MINUS           shift and go to state 24
+    MULTI           shift and go to state 25
+    DIVID           shift and go to state 26
+
+
+state 32
+
+    (34) statement -> IF L_PAREN . conditional R_PAREN
+    (38) conditional -> . value sign value
+    (51) value -> . NUMBER
+    (52) value -> . NAME
+    (53) value -> . NAME L_S_BRACKET value R_S_BRACKET
+    (54) value -> . NAME L_S_BRACKET value R_S_BRACKET NO VALUE
+    (55) value -> . NAME NO ARR_LEN
+    (56) value -> . L_PAREN value R_PAREN
+    (57) value -> . L_PAREN value R_PAREN NO RESULT
+    (58) value -> . value PLUS value
+    (59) value -> . value MINUS value
+    (60) value -> . value MULTI value
+    (61) value -> . value DIVID value division_tail
+
+    NUMBER          shift and go to state 13
+    NAME            shift and go to state 30
+    L_PAREN         shift and go to state 6
+
+    conditional                    shift and go to state 57
+    value                          shift and go to state 58
+
+state 33
+
+    (35) statement -> ELSEIF L_PAREN . conditional R_PAREN
+    (38) conditional -> . value sign value
+    (51) value -> . NUMBER
+    (52) value -> . NAME
+    (53) value -> . NAME L_S_BRACKET value R_S_BRACKET
+    (54) value -> . NAME L_S_BRACKET value R_S_BRACKET NO VALUE
+    (55) value -> . NAME NO ARR_LEN
+    (56) value -> . L_PAREN value R_PAREN
+    (57) value -> . L_PAREN value R_PAREN NO RESULT
+    (58) value -> . value PLUS value
+    (59) value -> . value MINUS value
+    (60) value -> . value MULTI value
+    (61) value -> . value DIVID value division_tail
+
+    NUMBER          shift and go to state 13
+    NAME            shift and go to state 30
+    L_PAREN         shift and go to state 6
+
+    conditional                    shift and go to state 59
+    value                          shift and go to state 58
+
+state 34
+
+    (48) statement -> FOR L_PAREN . NAME WO value KARA value MADE NUMBER ZUTSU INCREASE R_PAREN
+
+    NAME            shift and go to state 60
+
+
+state 35
+
+    (49) statement -> WHILE L_PAREN . conditional R_PAREN
+    (38) conditional -> . value sign value
+    (51) value -> . NUMBER
+    (52) value -> . NAME
+    (53) value -> . NAME L_S_BRACKET value R_S_BRACKET
+    (54) value -> . NAME L_S_BRACKET value R_S_BRACKET NO VALUE
+    (55) value -> . NAME NO ARR_LEN
+    (56) value -> . L_PAREN value R_PAREN
+    (57) value -> . L_PAREN value R_PAREN NO RESULT
+    (58) value -> . value PLUS value
+    (59) value -> . value MINUS value
+    (60) value -> . value MULTI value
+    (61) value -> . value DIVID value division_tail
+
+    NUMBER          shift and go to state 13
+    NAME            shift and go to state 30
+    L_PAREN         shift and go to state 6
+
+    conditional                    shift and go to state 61
+    value                          shift and go to state 58
+
+state 36
+
+    (2) statement -> TYPE COLON decl_names .
+
+    $end            reduce using rule 2 (statement -> TYPE COLON decl_names .)
+
+
+state 37
+
+    (6) statement -> TYPE COLON NAME . ASSIGN value
+    (31) statement -> TYPE COLON NAME . ASSIGN NAME L_PAREN args R_PAREN
+    (3) decl_names -> NAME . decl_names_m
+    (4) decl_names_m -> . COMMA NAME decl_names_m
+    (5) decl_names_m -> .
+
+    ASSIGN          shift and go to state 62
+    COMMA           shift and go to state 64
+    $end            reduce using rule 5 (decl_names_m -> .)
+
+    decl_names_m                   shift and go to state 63
+
+state 38
+
+    (8) statement -> TYPE NO ARRAY . COLON NAME ASSIGN init_array
+
+    COLON           shift and go to state 65
+
+
+state 39
+
+    (30) statement -> NAME ASSIGN NAME . L_PAREN args R_PAREN
+    (52) value -> NAME .
+    (53) value -> NAME . L_S_BRACKET value R_S_BRACKET
+    (54) value -> NAME . L_S_BRACKET value R_S_BRACKET NO VALUE
+    (55) value -> NAME . NO ARR_LEN
+
+    L_PAREN         shift and go to state 66
+    PLUS            reduce using rule 52 (value -> NAME .)
+    MINUS           reduce using rule 52 (value -> NAME .)
+    MULTI           reduce using rule 52 (value -> NAME .)
+    DIVID           reduce using rule 52 (value -> NAME .)
+    $end            reduce using rule 52 (value -> NAME .)
+    L_S_BRACKET     shift and go to state 55
+    NO              shift and go to state 56
+
+
+state 40
+
+    (7) statement -> NAME ASSIGN value .
+    (58) value -> value . PLUS value
+    (59) value -> value . MINUS value
+    (60) value -> value . MULTI value
+    (61) value -> value . DIVID value division_tail
+
+    $end            reduce using rule 7 (statement -> NAME ASSIGN value .)
+    PLUS            shift and go to state 23
+    MINUS           shift and go to state 24
+    MULTI           shift and go to state 25
+    DIVID           shift and go to state 26
+
+
+state 41
+
+    (13) statement -> NAME L_S_BRACKET value . R_S_BRACKET ASSIGN value
+    (53) value -> NAME L_S_BRACKET value . R_S_BRACKET
+    (54) value -> NAME L_S_BRACKET value . R_S_BRACKET NO VALUE
+    (58) value -> value . PLUS value
+    (59) value -> value . MINUS value
+    (60) value -> value . MULTI value
+    (61) value -> value . DIVID value division_tail
+
+    R_S_BRACKET     shift and go to state 67
+    PLUS            shift and go to state 23
+    MINUS           shift and go to state 24
+    MULTI           shift and go to state 25
+    DIVID           shift and go to state 26
+
+
+state 42
+
+    (14) statement -> NAME NO END . NI value WO ADD
+
+    NI              shift and go to state 68
+
+
+state 43
+
+    (55) value -> NAME NO ARR_LEN .
+
+    WO              reduce using rule 55 (value -> NAME NO ARR_LEN .)
+    PLUS            reduce using rule 55 (value -> NAME NO ARR_LEN .)
+    MINUS           reduce using rule 55 (value -> NAME NO ARR_LEN .)
+    MULTI           reduce using rule 55 (value -> NAME NO ARR_LEN .)
+    DIVID           reduce using rule 55 (value -> NAME NO ARR_LEN .)
+    R_PAREN         reduce using rule 55 (value -> NAME NO ARR_LEN .)
+    $end            reduce using rule 55 (value -> NAME NO ARR_LEN .)
+    R_S_BRACKET     reduce using rule 55 (value -> NAME NO ARR_LEN .)
+    COMMA           reduce using rule 55 (value -> NAME NO ARR_LEN .)
+    NO              reduce using rule 55 (value -> NAME NO ARR_LEN .)
+    EQUAL           reduce using rule 55 (value -> NAME NO ARR_LEN .)
+    NOT             reduce using rule 55 (value -> NAME NO ARR_LEN .)
+    NOT2            reduce using rule 55 (value -> NAME NO ARR_LEN .)
+    LESS            reduce using rule 55 (value -> NAME NO ARR_LEN .)
+    LESS_EQUAL      reduce using rule 55 (value -> NAME NO ARR_LEN .)
+    GREATER         reduce using rule 55 (value -> NAME NO ARR_LEN .)
+    GREATER_EQUAL   reduce using rule 55 (value -> NAME NO ARR_LEN .)
+    KARA            reduce using rule 55 (value -> NAME NO ARR_LEN .)
+    MADE            reduce using rule 55 (value -> NAME NO ARR_LEN .)
+
+
+state 44
+
+    (29) statement -> NAME L_PAREN args . R_PAREN
+
+    R_PAREN         shift and go to state 69
+
+
+state 45
+
+    (26) args -> value . args_m
+    (58) value -> value . PLUS value
+    (59) value -> value . MINUS value
+    (60) value -> value . MULTI value
+    (61) value -> value . DIVID value division_tail
+    (27) args_m -> . COMMA value args_m
+    (28) args_m -> .
+
+    PLUS            shift and go to state 23
+    MINUS           shift and go to state 24
+    MULTI           shift and go to state 25
+    DIVID           shift and go to state 26
+    COMMA           shift and go to state 71
+    R_PAREN         reduce using rule 28 (args_m -> .)
+
+    args_m                         shift and go to state 70
+
+state 46
+
+    (15) statement -> value WO OUT .
+
+    $end            reduce using rule 15 (statement -> value WO OUT .)
+
+
+state 47
+
+    (58) value -> value PLUS value .
+    (58) value -> value . PLUS value
+    (59) value -> value . MINUS value
+    (60) value -> value . MULTI value
+    (61) value -> value . DIVID value division_tail
+
+    WO              reduce using rule 58 (value -> value PLUS value .)
+    PLUS            reduce using rule 58 (value -> value PLUS value .)
+    MINUS           reduce using rule 58 (value -> value PLUS value .)
+    R_PAREN         reduce using rule 58 (value -> value PLUS value .)
+    $end            reduce using rule 58 (value -> value PLUS value .)
+    R_S_BRACKET     reduce using rule 58 (value -> value PLUS value .)
+    COMMA           reduce using rule 58 (value -> value PLUS value .)
+    NO              reduce using rule 58 (value -> value PLUS value .)
+    EQUAL           reduce using rule 58 (value -> value PLUS value .)
+    NOT             reduce using rule 58 (value -> value PLUS value .)
+    NOT2            reduce using rule 58 (value -> value PLUS value .)
+    LESS            reduce using rule 58 (value -> value PLUS value .)
+    LESS_EQUAL      reduce using rule 58 (value -> value PLUS value .)
+    GREATER         reduce using rule 58 (value -> value PLUS value .)
+    GREATER_EQUAL   reduce using rule 58 (value -> value PLUS value .)
+    KARA            reduce using rule 58 (value -> value PLUS value .)
+    MADE            reduce using rule 58 (value -> value PLUS value .)
+    MULTI           shift and go to state 25
+    DIVID           shift and go to state 26
+
+  ! MULTI           [ reduce using rule 58 (value -> value PLUS value .) ]
+  ! DIVID           [ reduce using rule 58 (value -> value PLUS value .) ]
+  ! PLUS            [ shift and go to state 23 ]
+  ! MINUS           [ shift and go to state 24 ]
+
+
+state 48
+
+    (59) value -> value MINUS value .
+    (58) value -> value . PLUS value
+    (59) value -> value . MINUS value
+    (60) value -> value . MULTI value
+    (61) value -> value . DIVID value division_tail
+
+    WO              reduce using rule 59 (value -> value MINUS value .)
+    PLUS            reduce using rule 59 (value -> value MINUS value .)
+    MINUS           reduce using rule 59 (value -> value MINUS value .)
+    R_PAREN         reduce using rule 59 (value -> value MINUS value .)
+    $end            reduce using rule 59 (value -> value MINUS value .)
+    R_S_BRACKET     reduce using rule 59 (value -> value MINUS value .)
+    COMMA           reduce using rule 59 (value -> value MINUS value .)
+    NO              reduce using rule 59 (value -> value MINUS value .)
+    EQUAL           reduce using rule 59 (value -> value MINUS value .)
+    NOT             reduce using rule 59 (value -> value MINUS value .)
+    NOT2            reduce using rule 59 (value -> value MINUS value .)
+    LESS            reduce using rule 59 (value -> value MINUS value .)
+    LESS_EQUAL      reduce using rule 59 (value -> value MINUS value .)
+    GREATER         reduce using rule 59 (value -> value MINUS value .)
+    GREATER_EQUAL   reduce using rule 59 (value -> value MINUS value .)
+    KARA            reduce using rule 59 (value -> value MINUS value .)
+    MADE            reduce using rule 59 (value -> value MINUS value .)
+    MULTI           shift and go to state 25
+    DIVID           shift and go to state 26
+
+  ! MULTI           [ reduce using rule 59 (value -> value MINUS value .) ]
+  ! DIVID           [ reduce using rule 59 (value -> value MINUS value .) ]
+  ! PLUS            [ shift and go to state 23 ]
+  ! MINUS           [ shift and go to state 24 ]
+
+
+state 49
+
+    (60) value -> value MULTI value .
+    (58) value -> value . PLUS value
+    (59) value -> value . MINUS value
+    (60) value -> value . MULTI value
+    (61) value -> value . DIVID value division_tail
+
+    WO              reduce using rule 60 (value -> value MULTI value .)
+    PLUS            reduce using rule 60 (value -> value MULTI value .)
+    MINUS           reduce using rule 60 (value -> value MULTI value .)
+    MULTI           reduce using rule 60 (value -> value MULTI value .)
+    DIVID           reduce using rule 60 (value -> value MULTI value .)
+    R_PAREN         reduce using rule 60 (value -> value MULTI value .)
+    $end            reduce using rule 60 (value -> value MULTI value .)
+    R_S_BRACKET     reduce using rule 60 (value -> value MULTI value .)
+    COMMA           reduce using rule 60 (value -> value MULTI value .)
+    NO              reduce using rule 60 (value -> value MULTI value .)
+    EQUAL           reduce using rule 60 (value -> value MULTI value .)
+    NOT             reduce using rule 60 (value -> value MULTI value .)
+    NOT2            reduce using rule 60 (value -> value MULTI value .)
+    LESS            reduce using rule 60 (value -> value MULTI value .)
+    LESS_EQUAL      reduce using rule 60 (value -> value MULTI value .)
+    GREATER         reduce using rule 60 (value -> value MULTI value .)
+    GREATER_EQUAL   reduce using rule 60 (value -> value MULTI value .)
+    KARA            reduce using rule 60 (value -> value MULTI value .)
+    MADE            reduce using rule 60 (value -> value MULTI value .)
+
+  ! PLUS            [ shift and go to state 23 ]
+  ! MINUS           [ shift and go to state 24 ]
+  ! MULTI           [ shift and go to state 25 ]
+  ! DIVID           [ shift and go to state 26 ]
+
+
+state 50
+
+    (61) value -> value DIVID value . division_tail
+    (58) value -> value . PLUS value
+    (59) value -> value . MINUS value
+    (60) value -> value . MULTI value
+    (61) value -> value . DIVID value division_tail
+    (62) division_tail -> . NO SHOW
+    (63) division_tail -> .
+
+  ! shift/reduce conflict for PLUS resolved as shift
+  ! shift/reduce conflict for MINUS resolved as shift
+  ! shift/reduce conflict for MULTI resolved as shift
+  ! shift/reduce conflict for DIVID resolved as shift
+  ! shift/reduce conflict for NO resolved as shift
+    PLUS            shift and go to state 23
+    MINUS           shift and go to state 24
+    MULTI           shift and go to state 25
+    DIVID           shift and go to state 26
+    NO              shift and go to state 73
+    WO              reduce using rule 63 (division_tail -> .)
+    R_PAREN         reduce using rule 63 (division_tail -> .)
+    $end            reduce using rule 63 (division_tail -> .)
+    R_S_BRACKET     reduce using rule 63 (division_tail -> .)
+    COMMA           reduce using rule 63 (division_tail -> .)
+    EQUAL           reduce using rule 63 (division_tail -> .)
+    NOT             reduce using rule 63 (division_tail -> .)
+    NOT2            reduce using rule 63 (division_tail -> .)
+    LESS            reduce using rule 63 (division_tail -> .)
+    LESS_EQUAL      reduce using rule 63 (division_tail -> .)
+    GREATER         reduce using rule 63 (division_tail -> .)
+    GREATER_EQUAL   reduce using rule 63 (division_tail -> .)
+    KARA            reduce using rule 63 (division_tail -> .)
+    MADE            reduce using rule 63 (division_tail -> .)
+
+  ! PLUS            [ reduce using rule 63 (division_tail -> .) ]
+  ! MINUS           [ reduce using rule 63 (division_tail -> .) ]
+  ! MULTI           [ reduce using rule 63 (division_tail -> .) ]
+  ! DIVID           [ reduce using rule 63 (division_tail -> .) ]
+  ! NO              [ reduce using rule 63 (division_tail -> .) ]
+
+    division_tail                  shift and go to state 72
+
+state 51
+
+    (22) statement -> CIRCLE NAME L_PAREN . params R_PAREN
+    (16) params -> .
+    (17) params -> . TYPE COLON NAME params_m
+    (18) params -> . TYPE NO ARRAY COLON NAME params_m
+
+    R_PAREN         reduce using rule 16 (params -> .)
+    TYPE            shift and go to state 75
+
+    params                         shift and go to state 74
+
+state 52
+
+    (23) statement -> CIRCLE TYPE COLON . NAME L_PAREN params R_PAREN
+
+    NAME            shift and go to state 76
+
+
+state 53
+
+    (24) statement -> CIRCLE TYPE NO . ARRAY COLON NAME L_PAREN params R_PAREN
+
+    ARRAY           shift and go to state 77
+
+
+state 54
+
+    (56) value -> L_PAREN value R_PAREN .
+    (57) value -> L_PAREN value R_PAREN . NO RESULT
+
+  ! shift/reduce conflict for NO resolved as shift
+    WO              reduce using rule 56 (value -> L_PAREN value R_PAREN .)
+    PLUS            reduce using rule 56 (value -> L_PAREN value R_PAREN .)
+    MINUS           reduce using rule 56 (value -> L_PAREN value R_PAREN .)
+    MULTI           reduce using rule 56 (value -> L_PAREN value R_PAREN .)
+    DIVID           reduce using rule 56 (value -> L_PAREN value R_PAREN .)
+    R_PAREN         reduce using rule 56 (value -> L_PAREN value R_PAREN .)
+    $end            reduce using rule 56 (value -> L_PAREN value R_PAREN .)
+    R_S_BRACKET     reduce using rule 56 (value -> L_PAREN value R_PAREN .)
+    COMMA           reduce using rule 56 (value -> L_PAREN value R_PAREN .)
+    EQUAL           reduce using rule 56 (value -> L_PAREN value R_PAREN .)
+    NOT             reduce using rule 56 (value -> L_PAREN value R_PAREN .)
+    NOT2            reduce using rule 56 (value -> L_PAREN value R_PAREN .)
+    LESS            reduce using rule 56 (value -> L_PAREN value R_PAREN .)
+    LESS_EQUAL      reduce using rule 56 (value -> L_PAREN value R_PAREN .)
+    GREATER         reduce using rule 56 (value -> L_PAREN value R_PAREN .)
+    GREATER_EQUAL   reduce using rule 56 (value -> L_PAREN value R_PAREN .)
+    KARA            reduce using rule 56 (value -> L_PAREN value R_PAREN .)
+    MADE            reduce using rule 56 (value -> L_PAREN value R_PAREN .)
+    NO              shift and go to state 78
+
+  ! NO              [ reduce using rule 56 (value -> L_PAREN value R_PAREN .) ]
+
+
+state 55
+
+    (53) value -> NAME L_S_BRACKET . value R_S_BRACKET
+    (54) value -> NAME L_S_BRACKET . value R_S_BRACKET NO VALUE
+    (51) value -> . NUMBER
+    (52) value -> . NAME
+    (53) value -> . NAME L_S_BRACKET value R_S_BRACKET
+    (54) value -> . NAME L_S_BRACKET value R_S_BRACKET NO VALUE
+    (55) value -> . NAME NO ARR_LEN
+    (56) value -> . L_PAREN value R_PAREN
+    (57) value -> . L_PAREN value R_PAREN NO RESULT
+    (58) value -> . value PLUS value
+    (59) value -> . value MINUS value
+    (60) value -> . value MULTI value
+    (61) value -> . value DIVID value division_tail
+
+    NUMBER          shift and go to state 13
+    NAME            shift and go to state 30
+    L_PAREN         shift and go to state 6
+
+    value                          shift and go to state 79
+
+state 56
+
+    (55) value -> NAME NO . ARR_LEN
+
+    ARR_LEN         shift and go to state 43
+
+
+state 57
+
+    (34) statement -> IF L_PAREN conditional . R_PAREN
+
+    R_PAREN         shift and go to state 80
+
+
+state 58
+
+    (38) conditional -> value . sign value
+    (58) value -> value . PLUS value
+    (59) value -> value . MINUS value
+    (60) value -> value . MULTI value
+    (61) value -> value . DIVID value division_tail
+    (39) sign -> . EQUAL
+    (40) sign -> . NOT EQUAL
+    (41) sign -> . NOT2
+    (42) sign -> . LESS
+    (43) sign -> . LESS EQUAL
+    (44) sign -> . LESS_EQUAL
+    (45) sign -> . GREATER
+    (46) sign -> . GREATER EQUAL
+    (47) sign -> . GREATER_EQUAL
+
+    PLUS            shift and go to state 23
+    MINUS           shift and go to state 24
+    MULTI           shift and go to state 25
+    DIVID           shift and go to state 26
+    EQUAL           shift and go to state 82
+    NOT             shift and go to state 83
+    NOT2            shift and go to state 84
+    LESS            shift and go to state 85
+    LESS_EQUAL      shift and go to state 86
+    GREATER         shift and go to state 87
+    GREATER_EQUAL   shift and go to state 88
+
+    sign                           shift and go to state 81
+
+state 59
+
+    (35) statement -> ELSEIF L_PAREN conditional . R_PAREN
+
+    R_PAREN         shift and go to state 89
+
+
+state 60
+
+    (48) statement -> FOR L_PAREN NAME . WO value KARA value MADE NUMBER ZUTSU INCREASE R_PAREN
+
+    WO              shift and go to state 90
+
+
+state 61
+
+    (49) statement -> WHILE L_PAREN conditional . R_PAREN
+
+    R_PAREN         shift and go to state 91
+
+
+state 62
+
+    (6) statement -> TYPE COLON NAME ASSIGN . value
+    (31) statement -> TYPE COLON NAME ASSIGN . NAME L_PAREN args R_PAREN
+    (51) value -> . NUMBER
+    (52) value -> . NAME
+    (53) value -> . NAME L_S_BRACKET value R_S_BRACKET
+    (54) value -> . NAME L_S_BRACKET value R_S_BRACKET NO VALUE
+    (55) value -> . NAME NO ARR_LEN
+    (56) value -> . L_PAREN value R_PAREN
+    (57) value -> . L_PAREN value R_PAREN NO RESULT
+    (58) value -> . value PLUS value
+    (59) value -> . value MINUS value
+    (60) value -> . value MULTI value
+    (61) value -> . value DIVID value division_tail
+
+    NAME            shift and go to state 92
+    NUMBER          shift and go to state 13
+    L_PAREN         shift and go to state 6
+
+    value                          shift and go to state 93
+
+state 63
+
+    (3) decl_names -> NAME decl_names_m .
+
+    $end            reduce using rule 3 (decl_names -> NAME decl_names_m .)
+
+
+state 64
+
+    (4) decl_names_m -> COMMA . NAME decl_names_m
+
+    NAME            shift and go to state 94
+
+
+state 65
+
+    (8) statement -> TYPE NO ARRAY COLON . NAME ASSIGN init_array
+
+    NAME            shift and go to state 95
+
+
+state 66
+
+    (30) statement -> NAME ASSIGN NAME L_PAREN . args R_PAREN
+    (25) args -> .
+    (26) args -> . value args_m
+    (51) value -> . NUMBER
+    (52) value -> . NAME
+    (53) value -> . NAME L_S_BRACKET value R_S_BRACKET
+    (54) value -> . NAME L_S_BRACKET value R_S_BRACKET NO VALUE
+    (55) value -> . NAME NO ARR_LEN
+    (56) value -> . L_PAREN value R_PAREN
+    (57) value -> . L_PAREN value R_PAREN NO RESULT
+    (58) value -> . value PLUS value
+    (59) value -> . value MINUS value
+    (60) value -> . value MULTI value
+    (61) value -> . value DIVID value division_tail
+
+    R_PAREN         reduce using rule 25 (args -> .)
+    NUMBER          shift and go to state 13
+    NAME            shift and go to state 30
+    L_PAREN         shift and go to state 6
+
+    args                           shift and go to state 96
+    value                          shift and go to state 45
+
+state 67
+
+    (13) statement -> NAME L_S_BRACKET value R_S_BRACKET . ASSIGN value
+    (53) value -> NAME L_S_BRACKET value R_S_BRACKET .
+    (54) value -> NAME L_S_BRACKET value R_S_BRACKET . NO VALUE
+
+    ASSIGN          shift and go to state 97
+    WO              reduce using rule 53 (value -> NAME L_S_BRACKET value R_S_BRACKET .)
+    PLUS            reduce using rule 53 (value -> NAME L_S_BRACKET value R_S_BRACKET .)
+    MINUS           reduce using rule 53 (value -> NAME L_S_BRACKET value R_S_BRACKET .)
+    MULTI           reduce using rule 53 (value -> NAME L_S_BRACKET value R_S_BRACKET .)
+    DIVID           reduce using rule 53 (value -> NAME L_S_BRACKET value R_S_BRACKET .)
+    NO              shift and go to state 98
+
+
+state 68
+
+    (14) statement -> NAME NO END NI . value WO ADD
+    (51) value -> . NUMBER
+    (52) value -> . NAME
+    (53) value -> . NAME L_S_BRACKET value R_S_BRACKET
+    (54) value -> . NAME L_S_BRACKET value R_S_BRACKET NO VALUE
+    (55) value -> . NAME NO ARR_LEN
+    (56) value -> . L_PAREN value R_PAREN
+    (57) value -> . L_PAREN value R_PAREN NO RESULT
+    (58) value -> . value PLUS value
+    (59) value -> . value MINUS value
+    (60) value -> . value MULTI value
+    (61) value -> . value DIVID value division_tail
+
+    NUMBER          shift and go to state 13
+    NAME            shift and go to state 30
+    L_PAREN         shift and go to state 6
+
+    value                          shift and go to state 99
+
+state 69
+
+    (29) statement -> NAME L_PAREN args R_PAREN .
+
+    $end            reduce using rule 29 (statement -> NAME L_PAREN args R_PAREN .)
+
+
+state 70
+
+    (26) args -> value args_m .
+
+    R_PAREN         reduce using rule 26 (args -> value args_m .)
+
+
+state 71
+
+    (27) args_m -> COMMA . value args_m
+    (51) value -> . NUMBER
+    (52) value -> . NAME
+    (53) value -> . NAME L_S_BRACKET value R_S_BRACKET
+    (54) value -> . NAME L_S_BRACKET value R_S_BRACKET NO VALUE
+    (55) value -> . NAME NO ARR_LEN
+    (56) value -> . L_PAREN value R_PAREN
+    (57) value -> . L_PAREN value R_PAREN NO RESULT
+    (58) value -> . value PLUS value
+    (59) value -> . value MINUS value
+    (60) value -> . value MULTI value
+    (61) value -> . value DIVID value division_tail
+
+    NUMBER          shift and go to state 13
+    NAME            shift and go to state 30
+    L_PAREN         shift and go to state 6
+
+    value                          shift and go to state 100
+
+state 72
+
+    (61) value -> value DIVID value division_tail .
+
+    WO              reduce using rule 61 (value -> value DIVID value division_tail .)
+    PLUS            reduce using rule 61 (value -> value DIVID value division_tail .)
+    MINUS           reduce using rule 61 (value -> value DIVID value division_tail .)
+    MULTI           reduce using rule 61 (value -> value DIVID value division_tail .)
+    DIVID           reduce using rule 61 (value -> value DIVID value division_tail .)
+    R_PAREN         reduce using rule 61 (value -> value DIVID value division_tail .)
+    $end            reduce using rule 61 (value -> value DIVID value division_tail .)
+    R_S_BRACKET     reduce using rule 61 (value -> value DIVID value division_tail .)
+    COMMA           reduce using rule 61 (value -> value DIVID value division_tail .)
+    NO              reduce using rule 61 (value -> value DIVID value division_tail .)
+    EQUAL           reduce using rule 61 (value -> value DIVID value division_tail .)
+    NOT             reduce using rule 61 (value -> value DIVID value division_tail .)
+    NOT2            reduce using rule 61 (value -> value DIVID value division_tail .)
+    LESS            reduce using rule 61 (value -> value DIVID value division_tail .)
+    LESS_EQUAL      reduce using rule 61 (value -> value DIVID value division_tail .)
+    GREATER         reduce using rule 61 (value -> value DIVID value division_tail .)
+    GREATER_EQUAL   reduce using rule 61 (value -> value DIVID value division_tail .)
+    KARA            reduce using rule 61 (value -> value DIVID value division_tail .)
+    MADE            reduce using rule 61 (value -> value DIVID value division_tail .)
+
+
+state 73
+
+    (62) division_tail -> NO . SHOW
+
+    SHOW            shift and go to state 101
+
+
+state 74
+
+    (22) statement -> CIRCLE NAME L_PAREN params . R_PAREN
+
+    R_PAREN         shift and go to state 102
+
+
+state 75
+
+    (17) params -> TYPE . COLON NAME params_m
+    (18) params -> TYPE . NO ARRAY COLON NAME params_m
+
+    COLON           shift and go to state 103
+    NO              shift and go to state 104
+
+
+state 76
+
+    (23) statement -> CIRCLE TYPE COLON NAME . L_PAREN params R_PAREN
+
+    L_PAREN         shift and go to state 105
+
+
+state 77
+
+    (24) statement -> CIRCLE TYPE NO ARRAY . COLON NAME L_PAREN params R_PAREN
+
+    COLON           shift and go to state 106
+
+
+state 78
+
+    (57) value -> L_PAREN value R_PAREN NO . RESULT
+
+    RESULT          shift and go to state 107
+
+
+state 79
+
+    (53) value -> NAME L_S_BRACKET value . R_S_BRACKET
+    (54) value -> NAME L_S_BRACKET value . R_S_BRACKET NO VALUE
+    (58) value -> value . PLUS value
+    (59) value -> value . MINUS value
+    (60) value -> value . MULTI value
+    (61) value -> value . DIVID value division_tail
+
+    R_S_BRACKET     shift and go to state 108
+    PLUS            shift and go to state 23
+    MINUS           shift and go to state 24
+    MULTI           shift and go to state 25
+    DIVID           shift and go to state 26
+
+
+state 80
+
+    (34) statement -> IF L_PAREN conditional R_PAREN .
+
+    $end            reduce using rule 34 (statement -> IF L_PAREN conditional R_PAREN .)
+
+
+state 81
+
+    (38) conditional -> value sign . value
+    (51) value -> . NUMBER
+    (52) value -> . NAME
+    (53) value -> . NAME L_S_BRACKET value R_S_BRACKET
+    (54) value -> . NAME L_S_BRACKET value R_S_BRACKET NO VALUE
+    (55) value -> . NAME NO ARR_LEN
+    (56) value -> . L_PAREN value R_PAREN
+    (57) value -> . L_PAREN value R_PAREN NO RESULT
+    (58) value -> . value PLUS value
+    (59) value -> . value MINUS value
+    (60) value -> . value MULTI value
+    (61) value -> . value DIVID value division_tail
+
+    NUMBER          shift and go to state 13
+    NAME            shift and go to state 30
+    L_PAREN         shift and go to state 6
+
+    value                          shift and go to state 109
+
+state 82
+
+    (39) sign -> EQUAL .
+
+    NUMBER          reduce using rule 39 (sign -> EQUAL .)
+    NAME            reduce using rule 39 (sign -> EQUAL .)
+    L_PAREN         reduce using rule 39 (sign -> EQUAL .)
+
+
+state 83
+
+    (40) sign -> NOT . EQUAL
+
+    EQUAL           shift and go to state 110
+
+
+state 84
+
+    (41) sign -> NOT2 .
+
+    NUMBER          reduce using rule 41 (sign -> NOT2 .)
+    NAME            reduce using rule 41 (sign -> NOT2 .)
+    L_PAREN         reduce using rule 41 (sign -> NOT2 .)
+
+
+state 85
+
+    (42) sign -> LESS .
+    (43) sign -> LESS . EQUAL
+
+    NUMBER          reduce using rule 42 (sign -> LESS .)
+    NAME            reduce using rule 42 (sign -> LESS .)
+    L_PAREN         reduce using rule 42 (sign -> LESS .)
+    EQUAL           shift and go to state 111
+
+
+state 86
+
+    (44) sign -> LESS_EQUAL .
+
+    NUMBER          reduce using rule 44 (sign -> LESS_EQUAL .)
+    NAME            reduce using rule 44 (sign -> LESS_EQUAL .)
+    L_PAREN         reduce using rule 44 (sign -> LESS_EQUAL .)
+
+
+state 87
+
+    (45) sign -> GREATER .
+    (46) sign -> GREATER . EQUAL
+
+    NUMBER          reduce using rule 45 (sign -> GREATER .)
+    NAME            reduce using rule 45 (sign -> GREATER .)
+    L_PAREN         reduce using rule 45 (sign -> GREATER .)
+    EQUAL           shift and go to state 112
+
+
+state 88
+
+    (47) sign -> GREATER_EQUAL .
+
+    NUMBER          reduce using rule 47 (sign -> GREATER_EQUAL .)
+    NAME            reduce using rule 47 (sign -> GREATER_EQUAL .)
+    L_PAREN         reduce using rule 47 (sign -> GREATER_EQUAL .)
+
+
+state 89
+
+    (35) statement -> ELSEIF L_PAREN conditional R_PAREN .
+
+    $end            reduce using rule 35 (statement -> ELSEIF L_PAREN conditional R_PAREN .)
+
+
+state 90
+
+    (48) statement -> FOR L_PAREN NAME WO . value KARA value MADE NUMBER ZUTSU INCREASE R_PAREN
+    (51) value -> . NUMBER
+    (52) value -> . NAME
+    (53) value -> . NAME L_S_BRACKET value R_S_BRACKET
+    (54) value -> . NAME L_S_BRACKET value R_S_BRACKET NO VALUE
+    (55) value -> . NAME NO ARR_LEN
+    (56) value -> . L_PAREN value R_PAREN
+    (57) value -> . L_PAREN value R_PAREN NO RESULT
+    (58) value -> . value PLUS value
+    (59) value -> . value MINUS value
+    (60) value -> . value MULTI value
+    (61) value -> . value DIVID value division_tail
+
+    NUMBER          shift and go to state 13
+    NAME            shift and go to state 30
+    L_PAREN         shift and go to state 6
+
+    value                          shift and go to state 113
+
+state 91
+
+    (49) statement -> WHILE L_PAREN conditional R_PAREN .
+
+    $end            reduce using rule 49 (statement -> WHILE L_PAREN conditional R_PAREN .)
+
+
+state 92
+
+    (31) statement -> TYPE COLON NAME ASSIGN NAME . L_PAREN args R_PAREN
+    (52) value -> NAME .
+    (53) value -> NAME . L_S_BRACKET value R_S_BRACKET
+    (54) value -> NAME . L_S_BRACKET value R_S_BRACKET NO VALUE
+    (55) value -> NAME . NO ARR_LEN
+
+    L_PAREN         shift and go to state 114
+    PLUS            reduce using rule 52 (value -> NAME .)
+    MINUS           reduce using rule 52 (value -> NAME .)
+    MULTI           reduce using rule 52 (value -> NAME .)
+    DIVID           reduce using rule 52 (value -> NAME .)
+    $end            reduce using rule 52 (value -> NAME .)
+    L_S_BRACKET     shift and go to state 55
+    NO              shift and go to state 56
+
+
+state 93
+
+    (6) statement -> TYPE COLON NAME ASSIGN value .
+    (58) value -> value . PLUS value
+    (59) value -> value . MINUS value
+    (60) value -> value . MULTI value
+    (61) value -> value . DIVID value division_tail
+
+    $end            reduce using rule 6 (statement -> TYPE COLON NAME ASSIGN value .)
+    PLUS            shift and go to state 23
+    MINUS           shift and go to state 24
+    MULTI           shift and go to state 25
+    DIVID           shift and go to state 26
+
+
+state 94
+
+    (4) decl_names_m -> COMMA NAME . decl_names_m
+    (4) decl_names_m -> . COMMA NAME decl_names_m
+    (5) decl_names_m -> .
+
+    COMMA           shift and go to state 64
+    $end            reduce using rule 5 (decl_names_m -> .)
+
+    decl_names_m                   shift and go to state 115
+
+state 95
+
+    (8) statement -> TYPE NO ARRAY COLON NAME . ASSIGN init_array
+
+    ASSIGN          shift and go to state 116
+
+
+state 96
+
+    (30) statement -> NAME ASSIGN NAME L_PAREN args . R_PAREN
+
+    R_PAREN         shift and go to state 117
+
+
+state 97
+
+    (13) statement -> NAME L_S_BRACKET value R_S_BRACKET ASSIGN . value
+    (51) value -> . NUMBER
+    (52) value -> . NAME
+    (53) value -> . NAME L_S_BRACKET value R_S_BRACKET
+    (54) value -> . NAME L_S_BRACKET value R_S_BRACKET NO VALUE
+    (55) value -> . NAME NO ARR_LEN
+    (56) value -> . L_PAREN value R_PAREN
+    (57) value -> . L_PAREN value R_PAREN NO RESULT
+    (58) value -> . value PLUS value
+    (59) value -> . value MINUS value
+    (60) value -> . value MULTI value
+    (61) value -> . value DIVID value division_tail
+
+    NUMBER          shift and go to state 13
+    NAME            shift and go to state 30
+    L_PAREN         shift and go to state 6
+
+    value                          shift and go to state 118
+
+state 98
+
+    (54) value -> NAME L_S_BRACKET value R_S_BRACKET NO . VALUE
+
+    VALUE           shift and go to state 119
+
+
+state 99
+
+    (14) statement -> NAME NO END NI value . WO ADD
+    (58) value -> value . PLUS value
+    (59) value -> value . MINUS value
+    (60) value -> value . MULTI value
+    (61) value -> value . DIVID value division_tail
+
+    WO              shift and go to state 120
+    PLUS            shift and go to state 23
+    MINUS           shift and go to state 24
+    MULTI           shift and go to state 25
+    DIVID           shift and go to state 26
+
+
+state 100
+
+    (27) args_m -> COMMA value . args_m
+    (58) value -> value . PLUS value
+    (59) value -> value . MINUS value
+    (60) value -> value . MULTI value
+    (61) value -> value . DIVID value division_tail
+    (27) args_m -> . COMMA value args_m
+    (28) args_m -> .
+
+    PLUS            shift and go to state 23
+    MINUS           shift and go to state 24
+    MULTI           shift and go to state 25
+    DIVID           shift and go to state 26
+    COMMA           shift and go to state 71
+    R_PAREN         reduce using rule 28 (args_m -> .)
+
+    args_m                         shift and go to state 121
+
+state 101
+
+    (62) division_tail -> NO SHOW .
+
+    WO              reduce using rule 62 (division_tail -> NO SHOW .)
+    PLUS            reduce using rule 62 (division_tail -> NO SHOW .)
+    MINUS           reduce using rule 62 (division_tail -> NO SHOW .)
+    MULTI           reduce using rule 62 (division_tail -> NO SHOW .)
+    DIVID           reduce using rule 62 (division_tail -> NO SHOW .)
+    R_PAREN         reduce using rule 62 (division_tail -> NO SHOW .)
+    $end            reduce using rule 62 (division_tail -> NO SHOW .)
+    R_S_BRACKET     reduce using rule 62 (division_tail -> NO SHOW .)
+    COMMA           reduce using rule 62 (division_tail -> NO SHOW .)
+    NO              reduce using rule 62 (division_tail -> NO SHOW .)
+    EQUAL           reduce using rule 62 (division_tail -> NO SHOW .)
+    NOT             reduce using rule 62 (division_tail -> NO SHOW .)
+    NOT2            reduce using rule 62 (division_tail -> NO SHOW .)
+    LESS            reduce using rule 62 (division_tail -> NO SHOW .)
+    LESS_EQUAL      reduce using rule 62 (division_tail -> NO SHOW .)
+    GREATER         reduce using rule 62 (division_tail -> NO SHOW .)
+    GREATER_EQUAL   reduce using rule 62 (division_tail -> NO SHOW .)
+    KARA            reduce using rule 62 (division_tail -> NO SHOW .)
+    MADE            reduce using rule 62 (division_tail -> NO SHOW .)
+
+
+state 102
+
+    (22) statement -> CIRCLE NAME L_PAREN params R_PAREN .
+
+    $end            reduce using rule 22 (statement -> CIRCLE NAME L_PAREN params R_PAREN .)
+
+
+state 103
+
+    (17) params -> TYPE COLON . NAME params_m
+
+    NAME            shift and go to state 122
+
+
+state 104
+
+    (18) params -> TYPE NO . ARRAY COLON NAME params_m
+
+    ARRAY           shift and go to state 123
+
+
+state 105
+
+    (23) statement -> CIRCLE TYPE COLON NAME L_PAREN . params R_PAREN
+    (16) params -> .
+    (17) params -> . TYPE COLON NAME params_m
+    (18) params -> . TYPE NO ARRAY COLON NAME params_m
+
+    R_PAREN         reduce using rule 16 (params -> .)
+    TYPE            shift and go to state 75
+
+    params                         shift and go to state 124
+
+state 106
+
+    (24) statement -> CIRCLE TYPE NO ARRAY COLON . NAME L_PAREN params R_PAREN
+
+    NAME            shift and go to state 125
+
+
+state 107
+
+    (57) value -> L_PAREN value R_PAREN NO RESULT .
+
+    WO              reduce using rule 57 (value -> L_PAREN value R_PAREN NO RESULT .)
+    PLUS            reduce using rule 57 (value -> L_PAREN value R_PAREN NO RESULT .)
+    MINUS           reduce using rule 57 (value -> L_PAREN value R_PAREN NO RESULT .)
+    MULTI           reduce using rule 57 (value -> L_PAREN value R_PAREN NO RESULT .)
+    DIVID           reduce using rule 57 (value -> L_PAREN value R_PAREN NO RESULT .)
+    R_PAREN         reduce using rule 57 (value -> L_PAREN value R_PAREN NO RESULT .)
+    $end            reduce using rule 57 (value -> L_PAREN value R_PAREN NO RESULT .)
+    R_S_BRACKET     reduce using rule 57 (value -> L_PAREN value R_PAREN NO RESULT .)
+    COMMA           reduce using rule 57 (value -> L_PAREN value R_PAREN NO RESULT .)
+    NO              reduce using rule 57 (value -> L_PAREN value R_PAREN NO RESULT .)
+    EQUAL           reduce using rule 57 (value -> L_PAREN value R_PAREN NO RESULT .)
+    NOT             reduce using rule 57 (value -> L_PAREN value R_PAREN NO RESULT .)
+    NOT2            reduce using rule 57 (value -> L_PAREN value R_PAREN NO RESULT .)
+    LESS            reduce using rule 57 (value -> L_PAREN value R_PAREN NO RESULT .)
+    LESS_EQUAL      reduce using rule 57 (value -> L_PAREN value R_PAREN NO RESULT .)
+    GREATER         reduce using rule 57 (value -> L_PAREN value R_PAREN NO RESULT .)
+    GREATER_EQUAL   reduce using rule 57 (value -> L_PAREN value R_PAREN NO RESULT .)
+    KARA            reduce using rule 57 (value -> L_PAREN value R_PAREN NO RESULT .)
+    MADE            reduce using rule 57 (value -> L_PAREN value R_PAREN NO RESULT .)
+
+
+state 108
+
+    (53) value -> NAME L_S_BRACKET value R_S_BRACKET .
+    (54) value -> NAME L_S_BRACKET value R_S_BRACKET . NO VALUE
+
+  ! shift/reduce conflict for NO resolved as shift
+    R_PAREN         reduce using rule 53 (value -> NAME L_S_BRACKET value R_S_BRACKET .)
+    PLUS            reduce using rule 53 (value -> NAME L_S_BRACKET value R_S_BRACKET .)
+    MINUS           reduce using rule 53 (value -> NAME L_S_BRACKET value R_S_BRACKET .)
+    MULTI           reduce using rule 53 (value -> NAME L_S_BRACKET value R_S_BRACKET .)
+    DIVID           reduce using rule 53 (value -> NAME L_S_BRACKET value R_S_BRACKET .)
+    $end            reduce using rule 53 (value -> NAME L_S_BRACKET value R_S_BRACKET .)
+    R_S_BRACKET     reduce using rule 53 (value -> NAME L_S_BRACKET value R_S_BRACKET .)
+    COMMA           reduce using rule 53 (value -> NAME L_S_BRACKET value R_S_BRACKET .)
+    WO              reduce using rule 53 (value -> NAME L_S_BRACKET value R_S_BRACKET .)
+    EQUAL           reduce using rule 53 (value -> NAME L_S_BRACKET value R_S_BRACKET .)
+    NOT             reduce using rule 53 (value -> NAME L_S_BRACKET value R_S_BRACKET .)
+    NOT2            reduce using rule 53 (value -> NAME L_S_BRACKET value R_S_BRACKET .)
+    LESS            reduce using rule 53 (value -> NAME L_S_BRACKET value R_S_BRACKET .)
+    LESS_EQUAL      reduce using rule 53 (value -> NAME L_S_BRACKET value R_S_BRACKET .)
+    GREATER         reduce using rule 53 (value -> NAME L_S_BRACKET value R_S_BRACKET .)
+    GREATER_EQUAL   reduce using rule 53 (value -> NAME L_S_BRACKET value R_S_BRACKET .)
+    KARA            reduce using rule 53 (value -> NAME L_S_BRACKET value R_S_BRACKET .)
+    MADE            reduce using rule 53 (value -> NAME L_S_BRACKET value R_S_BRACKET .)
+    NO              shift and go to state 98
+
+  ! NO              [ reduce using rule 53 (value -> NAME L_S_BRACKET value R_S_BRACKET .) ]
+
+
+state 109
+
+    (38) conditional -> value sign value .
+    (58) value -> value . PLUS value
+    (59) value -> value . MINUS value
+    (60) value -> value . MULTI value
+    (61) value -> value . DIVID value division_tail
+
+    R_PAREN         reduce using rule 38 (conditional -> value sign value .)
+    PLUS            shift and go to state 23
+    MINUS           shift and go to state 24
+    MULTI           shift and go to state 25
+    DIVID           shift and go to state 26
+
+
+state 110
+
+    (40) sign -> NOT EQUAL .
+
+    NUMBER          reduce using rule 40 (sign -> NOT EQUAL .)
+    NAME            reduce using rule 40 (sign -> NOT EQUAL .)
+    L_PAREN         reduce using rule 40 (sign -> NOT EQUAL .)
+
+
+state 111
+
+    (43) sign -> LESS EQUAL .
+
+    NUMBER          reduce using rule 43 (sign -> LESS EQUAL .)
+    NAME            reduce using rule 43 (sign -> LESS EQUAL .)
+    L_PAREN         reduce using rule 43 (sign -> LESS EQUAL .)
+
+
+state 112
+
+    (46) sign -> GREATER EQUAL .
+
+    NUMBER          reduce using rule 46 (sign -> GREATER EQUAL .)
+    NAME            reduce using rule 46 (sign -> GREATER EQUAL .)
+    L_PAREN         reduce using rule 46 (sign -> GREATER EQUAL .)
+
+
+state 113
+
+    (48) statement -> FOR L_PAREN NAME WO value . KARA value MADE NUMBER ZUTSU INCREASE R_PAREN
+    (58) value -> value . PLUS value
+    (59) value -> value . MINUS value
+    (60) value -> value . MULTI value
+    (61) value -> value . DIVID value division_tail
+
+    KARA            shift and go to state 126
+    PLUS            shift and go to state 23
+    MINUS           shift and go to state 24
+    MULTI           shift and go to state 25
+    DIVID           shift and go to state 26
+
+
+state 114
+
+    (31) statement -> TYPE COLON NAME ASSIGN NAME L_PAREN . args R_PAREN
+    (25) args -> .
+    (26) args -> . value args_m
+    (51) value -> . NUMBER
+    (52) value -> . NAME
+    (53) value -> . NAME L_S_BRACKET value R_S_BRACKET
+    (54) value -> . NAME L_S_BRACKET value R_S_BRACKET NO VALUE
+    (55) value -> . NAME NO ARR_LEN
+    (56) value -> . L_PAREN value R_PAREN
+    (57) value -> . L_PAREN value R_PAREN NO RESULT
+    (58) value -> . value PLUS value
+    (59) value -> . value MINUS value
+    (60) value -> . value MULTI value
+    (61) value -> . value DIVID value division_tail
+
+    R_PAREN         reduce using rule 25 (args -> .)
+    NUMBER          shift and go to state 13
+    NAME            shift and go to state 30
+    L_PAREN         shift and go to state 6
+
+    args                           shift and go to state 127
+    value                          shift and go to state 45
+
+state 115
+
+    (4) decl_names_m -> COMMA NAME decl_names_m .
+
+    $end            reduce using rule 4 (decl_names_m -> COMMA NAME decl_names_m .)
+
+
+state 116
+
+    (8) statement -> TYPE NO ARRAY COLON NAME ASSIGN . init_array
+    (9) init_array -> . L_C_BRACKET R_C_BRACKET
+    (10) init_array -> . L_C_BRACKET init_array_val R_C_BRACKET
+
+    L_C_BRACKET     shift and go to state 129
+
+    init_array                     shift and go to state 128
+
+state 117
+
+    (30) statement -> NAME ASSIGN NAME L_PAREN args R_PAREN .
+
+    $end            reduce using rule 30 (statement -> NAME ASSIGN NAME L_PAREN args R_PAREN .)
+
+
+state 118
+
+    (13) statement -> NAME L_S_BRACKET value R_S_BRACKET ASSIGN value .
+    (58) value -> value . PLUS value
+    (59) value -> value . MINUS value
+    (60) value -> value . MULTI value
+    (61) value -> value . DIVID value division_tail
+
+    $end            reduce using rule 13 (statement -> NAME L_S_BRACKET value R_S_BRACKET ASSIGN value .)
+    PLUS            shift and go to state 23
+    MINUS           shift and go to state 24
+    MULTI           shift and go to state 25
+    DIVID           shift and go to state 26
+
+
+state 119
+
+    (54) value -> NAME L_S_BRACKET value R_S_BRACKET NO VALUE .
+
+    WO              reduce using rule 54 (value -> NAME L_S_BRACKET value R_S_BRACKET NO VALUE .)
+    PLUS            reduce using rule 54 (value -> NAME L_S_BRACKET value R_S_BRACKET NO VALUE .)
+    MINUS           reduce using rule 54 (value -> NAME L_S_BRACKET value R_S_BRACKET NO VALUE .)
+    MULTI           reduce using rule 54 (value -> NAME L_S_BRACKET value R_S_BRACKET NO VALUE .)
+    DIVID           reduce using rule 54 (value -> NAME L_S_BRACKET value R_S_BRACKET NO VALUE .)
+    R_PAREN         reduce using rule 54 (value -> NAME L_S_BRACKET value R_S_BRACKET NO VALUE .)
+    $end            reduce using rule 54 (value -> NAME L_S_BRACKET value R_S_BRACKET NO VALUE .)
+    R_S_BRACKET     reduce using rule 54 (value -> NAME L_S_BRACKET value R_S_BRACKET NO VALUE .)
+    COMMA           reduce using rule 54 (value -> NAME L_S_BRACKET value R_S_BRACKET NO VALUE .)
+    NO              reduce using rule 54 (value -> NAME L_S_BRACKET value R_S_BRACKET NO VALUE .)
+    EQUAL           reduce using rule 54 (value -> NAME L_S_BRACKET value R_S_BRACKET NO VALUE .)
+    NOT             reduce using rule 54 (value -> NAME L_S_BRACKET value R_S_BRACKET NO VALUE .)
+    NOT2            reduce using rule 54 (value -> NAME L_S_BRACKET value R_S_BRACKET NO VALUE .)
+    LESS            reduce using rule 54 (value -> NAME L_S_BRACKET value R_S_BRACKET NO VALUE .)
+    LESS_EQUAL      reduce using rule 54 (value -> NAME L_S_BRACKET value R_S_BRACKET NO VALUE .)
+    GREATER         reduce using rule 54 (value -> NAME L_S_BRACKET value R_S_BRACKET NO VALUE .)
+    GREATER_EQUAL   reduce using rule 54 (value -> NAME L_S_BRACKET value R_S_BRACKET NO VALUE .)
+    KARA            reduce using rule 54 (value -> NAME L_S_BRACKET value R_S_BRACKET NO VALUE .)
+    MADE            reduce using rule 54 (value -> NAME L_S_BRACKET value R_S_BRACKET NO VALUE .)
+
+
+state 120
+
+    (14) statement -> NAME NO END NI value WO . ADD
+
+    ADD             shift and go to state 130
+
+
+state 121
+
+    (27) args_m -> COMMA value args_m .
+
+    R_PAREN         reduce using rule 27 (args_m -> COMMA value args_m .)
+
+
+state 122
+
+    (17) params -> TYPE COLON NAME . params_m
+    (19) params_m -> . COMMA TYPE COLON NAME params_m
+    (20) params_m -> . COMMA TYPE NO ARRAY COLON NAME params_m
+    (21) params_m -> .
+
+    COMMA           shift and go to state 132
+    R_PAREN         reduce using rule 21 (params_m -> .)
+
+    params_m                       shift and go to state 131
+
+state 123
+
+    (18) params -> TYPE NO ARRAY . COLON NAME params_m
+
+    COLON           shift and go to state 133
+
+
+state 124
+
+    (23) statement -> CIRCLE TYPE COLON NAME L_PAREN params . R_PAREN
+
+    R_PAREN         shift and go to state 134
+
+
+state 125
+
+    (24) statement -> CIRCLE TYPE NO ARRAY COLON NAME . L_PAREN params R_PAREN
+
+    L_PAREN         shift and go to state 135
+
+
+state 126
+
+    (48) statement -> FOR L_PAREN NAME WO value KARA . value MADE NUMBER ZUTSU INCREASE R_PAREN
+    (51) value -> . NUMBER
+    (52) value -> . NAME
+    (53) value -> . NAME L_S_BRACKET value R_S_BRACKET
+    (54) value -> . NAME L_S_BRACKET value R_S_BRACKET NO VALUE
+    (55) value -> . NAME NO ARR_LEN
+    (56) value -> . L_PAREN value R_PAREN
+    (57) value -> . L_PAREN value R_PAREN NO RESULT
+    (58) value -> . value PLUS value
+    (59) value -> . value MINUS value
+    (60) value -> . value MULTI value
+    (61) value -> . value DIVID value division_tail
+
+    NUMBER          shift and go to state 13
+    NAME            shift and go to state 30
+    L_PAREN         shift and go to state 6
+
+    value                          shift and go to state 136
+
+state 127
+
+    (31) statement -> TYPE COLON NAME ASSIGN NAME L_PAREN args . R_PAREN
+
+    R_PAREN         shift and go to state 137
+
+
+state 128
+
+    (8) statement -> TYPE NO ARRAY COLON NAME ASSIGN init_array .
+
+    $end            reduce using rule 8 (statement -> TYPE NO ARRAY COLON NAME ASSIGN init_array .)
+
+
+state 129
+
+    (9) init_array -> L_C_BRACKET . R_C_BRACKET
+    (10) init_array -> L_C_BRACKET . init_array_val R_C_BRACKET
+    (11) init_array_val -> . init_array_val COMMA NUMBER
+    (12) init_array_val -> . NUMBER
+
+    R_C_BRACKET     shift and go to state 138
+    NUMBER          shift and go to state 140
+
+    init_array_val                 shift and go to state 139
+
+state 130
+
+    (14) statement -> NAME NO END NI value WO ADD .
+
+    $end            reduce using rule 14 (statement -> NAME NO END NI value WO ADD .)
+
+
+state 131
+
+    (17) params -> TYPE COLON NAME params_m .
+
+    R_PAREN         reduce using rule 17 (params -> TYPE COLON NAME params_m .)
+
+
+state 132
+
+    (19) params_m -> COMMA . TYPE COLON NAME params_m
+    (20) params_m -> COMMA . TYPE NO ARRAY COLON NAME params_m
+
+    TYPE            shift and go to state 141
+
+
+state 133
+
+    (18) params -> TYPE NO ARRAY COLON . NAME params_m
+
+    NAME            shift and go to state 142
+
+
+state 134
+
+    (23) statement -> CIRCLE TYPE COLON NAME L_PAREN params R_PAREN .
+
+    $end            reduce using rule 23 (statement -> CIRCLE TYPE COLON NAME L_PAREN params R_PAREN .)
+
+
+state 135
+
+    (24) statement -> CIRCLE TYPE NO ARRAY COLON NAME L_PAREN . params R_PAREN
+    (16) params -> .
+    (17) params -> . TYPE COLON NAME params_m
+    (18) params -> . TYPE NO ARRAY COLON NAME params_m
+
+    R_PAREN         reduce using rule 16 (params -> .)
+    TYPE            shift and go to state 75
+
+    params                         shift and go to state 143
+
+state 136
+
+    (48) statement -> FOR L_PAREN NAME WO value KARA value . MADE NUMBER ZUTSU INCREASE R_PAREN
+    (58) value -> value . PLUS value
+    (59) value -> value . MINUS value
+    (60) value -> value . MULTI value
+    (61) value -> value . DIVID value division_tail
+
+    MADE            shift and go to state 144
+    PLUS            shift and go to state 23
+    MINUS           shift and go to state 24
+    MULTI           shift and go to state 25
+    DIVID           shift and go to state 26
+
+
+state 137
+
+    (31) statement -> TYPE COLON NAME ASSIGN NAME L_PAREN args R_PAREN .
+
+    $end            reduce using rule 31 (statement -> TYPE COLON NAME ASSIGN NAME L_PAREN args R_PAREN .)
+
+
+state 138
+
+    (9) init_array -> L_C_BRACKET R_C_BRACKET .
+
+    $end            reduce using rule 9 (init_array -> L_C_BRACKET R_C_BRACKET .)
+
+
+state 139
+
+    (10) init_array -> L_C_BRACKET init_array_val . R_C_BRACKET
+    (11) init_array_val -> init_array_val . COMMA NUMBER
+
+    R_C_BRACKET     shift and go to state 145
+    COMMA           shift and go to state 146
+
+
+state 140
+
+    (12) init_array_val -> NUMBER .
+
+    R_C_BRACKET     reduce using rule 12 (init_array_val -> NUMBER .)
+    COMMA           reduce using rule 12 (init_array_val -> NUMBER .)
+
+
+state 141
+
+    (19) params_m -> COMMA TYPE . COLON NAME params_m
+    (20) params_m -> COMMA TYPE . NO ARRAY COLON NAME params_m
+
+    COLON           shift and go to state 147
+    NO              shift and go to state 148
+
+
+state 142
+
+    (18) params -> TYPE NO ARRAY COLON NAME . params_m
+    (19) params_m -> . COMMA TYPE COLON NAME params_m
+    (20) params_m -> . COMMA TYPE NO ARRAY COLON NAME params_m
+    (21) params_m -> .
+
+    COMMA           shift and go to state 132
+    R_PAREN         reduce using rule 21 (params_m -> .)
+
+    params_m                       shift and go to state 149
+
+state 143
+
+    (24) statement -> CIRCLE TYPE NO ARRAY COLON NAME L_PAREN params . R_PAREN
+
+    R_PAREN         shift and go to state 150
+
+
+state 144
+
+    (48) statement -> FOR L_PAREN NAME WO value KARA value MADE . NUMBER ZUTSU INCREASE R_PAREN
+
+    NUMBER          shift and go to state 151
+
+
+state 145
+
+    (10) init_array -> L_C_BRACKET init_array_val R_C_BRACKET .
+
+    $end            reduce using rule 10 (init_array -> L_C_BRACKET init_array_val R_C_BRACKET .)
+
+
+state 146
+
+    (11) init_array_val -> init_array_val COMMA . NUMBER
+
+    NUMBER          shift and go to state 152
+
+
+state 147
+
+    (19) params_m -> COMMA TYPE COLON . NAME params_m
+
+    NAME            shift and go to state 153
+
+
+state 148
+
+    (20) params_m -> COMMA TYPE NO . ARRAY COLON NAME params_m
+
+    ARRAY           shift and go to state 154
+
+
+state 149
+
+    (18) params -> TYPE NO ARRAY COLON NAME params_m .
+
+    R_PAREN         reduce using rule 18 (params -> TYPE NO ARRAY COLON NAME params_m .)
+
+
+state 150
+
+    (24) statement -> CIRCLE TYPE NO ARRAY COLON NAME L_PAREN params R_PAREN .
+
+    $end            reduce using rule 24 (statement -> CIRCLE TYPE NO ARRAY COLON NAME L_PAREN params R_PAREN .)
+
+
+state 151
+
+    (48) statement -> FOR L_PAREN NAME WO value KARA value MADE NUMBER . ZUTSU INCREASE R_PAREN
+
+    ZUTSU           shift and go to state 155
+
+
+state 152
+
+    (11) init_array_val -> init_array_val COMMA NUMBER .
+
+    R_C_BRACKET     reduce using rule 11 (init_array_val -> init_array_val COMMA NUMBER .)
+    COMMA           reduce using rule 11 (init_array_val -> init_array_val COMMA NUMBER .)
+
+
+state 153
+
+    (19) params_m -> COMMA TYPE COLON NAME . params_m
+    (19) params_m -> . COMMA TYPE COLON NAME params_m
+    (20) params_m -> . COMMA TYPE NO ARRAY COLON NAME params_m
+    (21) params_m -> .
+
+    COMMA           shift and go to state 132
+    R_PAREN         reduce using rule 21 (params_m -> .)
+
+    params_m                       shift and go to state 156
+
+state 154
+
+    (20) params_m -> COMMA TYPE NO ARRAY . COLON NAME params_m
+
+    COLON           shift and go to state 157
+
+
+state 155
+
+    (48) statement -> FOR L_PAREN NAME WO value KARA value MADE NUMBER ZUTSU . INCREASE R_PAREN
+
+    INCREASE        shift and go to state 158
+
+
+state 156
+
+    (19) params_m -> COMMA TYPE COLON NAME params_m .
+
+    R_PAREN         reduce using rule 19 (params_m -> COMMA TYPE COLON NAME params_m .)
+
+
+state 157
+
+    (20) params_m -> COMMA TYPE NO ARRAY COLON . NAME params_m
+
+    NAME            shift and go to state 159
+
+
+state 158
+
+    (48) statement -> FOR L_PAREN NAME WO value KARA value MADE NUMBER ZUTSU INCREASE . R_PAREN
+
+    R_PAREN         shift and go to state 160
+
+
+state 159
+
+    (20) params_m -> COMMA TYPE NO ARRAY COLON NAME . params_m
+    (19) params_m -> . COMMA TYPE COLON NAME params_m
+    (20) params_m -> . COMMA TYPE NO ARRAY COLON NAME params_m
+    (21) params_m -> .
+
+    COMMA           shift and go to state 132
+    R_PAREN         reduce using rule 21 (params_m -> .)
+
+    params_m                       shift and go to state 161
+
+state 160
+
+    (48) statement -> FOR L_PAREN NAME WO value KARA value MADE NUMBER ZUTSU INCREASE R_PAREN .
+
+    $end            reduce using rule 48 (statement -> FOR L_PAREN NAME WO value KARA value MADE NUMBER ZUTSU INCREASE R_PAREN .)
+
+
+state 161
+
+    (20) params_m -> COMMA TYPE NO ARRAY COLON NAME params_m .
+
+    R_PAREN         reduce using rule 20 (params_m -> COMMA TYPE NO ARRAY COLON NAME params_m .)
+
+WARNING: 
+WARNING: Conflicts:
+WARNING: 
+WARNING: shift/reduce conflict for NO in state 30 resolved as shift
+WARNING: shift/reduce conflict for PLUS in state 50 resolved as shift
+WARNING: shift/reduce conflict for MINUS in state 50 resolved as shift
+WARNING: shift/reduce conflict for MULTI in state 50 resolved as shift
+WARNING: shift/reduce conflict for DIVID in state 50 resolved as shift
+WARNING: shift/reduce conflict for NO in state 50 resolved as shift
+WARNING: shift/reduce conflict for NO in state 54 resolved as shift
+WARNING: shift/reduce conflict for NO in state 108 resolved as shift
