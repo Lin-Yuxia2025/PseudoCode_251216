@@ -1,5 +1,10 @@
-from flask import Flask, request, jsonify
-from . import parse              # この書き方じゃないとインポートできない  
+from flask import Flask, request, jsonify 
+
+try:
+    # Vercelで起動時は成功
+    from . import parse
+except ImportError:     # Localで実行すると失敗
+    import parse
 
 app = Flask(__name__)
 
