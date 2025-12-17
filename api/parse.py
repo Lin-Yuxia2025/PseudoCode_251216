@@ -1,32 +1,28 @@
 import sys
-import json
 import ply.lex as lex
 import ply.yacc as yacc
 
 # importで使うから、関数にする
 def parse(state):
 
-    # # run-pythonから送られた値を JSON形式の文字列から Pythonオブジェクトに変換する
-    # source = json.loads(sys.stdin.read())
-
-    source = state
+    state
 
     # エディタの文字列を取得
-    codes = source.get("text")
+    codes = state.get("text")
     # 現在の変数一覧を取得
-    globalVars = source.get("globalVars")
+    globalVars = state.get("globalVars")
     # 現在のグローバルスコープのステート
-    globalState = source.get("globalState")
+    globalState = state.get("globalState")
     # 現在の出力を取得
-    output = source.get("output")
+    output = state.get("output")
     # 次に実行する行を取得
-    currentLine = source.get("currentLine")
+    currentLine = state.get("currentLine")
     # 関数定義の情報を取得
-    functions = source.get("functions")
+    functions = state.get("functions")
     # 関数呼び出しの情報を取得
-    callStack = source.get("callStack")
+    callStack = state.get("callStack")
     # 最後まで実行ボタンを押したか
-    runButton = source.get("runButton")
+    runButton = state.get("runButton")
 
     # トークンエラーのメッセージを入れる場所(トークンエラーは構文ルール外だからparserに入れられない)
     terror_message = ""
