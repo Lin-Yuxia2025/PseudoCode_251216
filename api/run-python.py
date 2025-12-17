@@ -14,7 +14,8 @@ import parse
 parse_run = parse.parse
 
 # vercelで動かす場合、indexでなくファイル名(/api/run-python)を探す
-@app.post("/", methods=["POST"])        # このファイル自体が/api/run-pythonだから"/"
+# とりあえずここを試す。
+@app.route("/", methods=["POST"])        # このファイル自体が/api/run-pythonだから"/"
 def run_python():
     state = request.get_json()          # リクエストのJSON文字列をPythonの辞書に変換して取得
 
