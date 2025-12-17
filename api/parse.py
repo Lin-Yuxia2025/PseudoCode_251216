@@ -3,26 +3,24 @@ import ply.lex as lex
 import ply.yacc as yacc
 
 # importで使うから、関数にする
-def parse(state):
-
-    state
+def parse(source):
 
     # エディタの文字列を取得
-    codes = state.get("text")
+    codes = source.get("text")
     # 現在の変数一覧を取得
-    globalVars = state.get("globalVars")
+    globalVars = source.get("globalVars")
     # 現在のグローバルスコープのステート
-    globalState = state.get("globalState")
+    globalState = source.get("globalState")
     # 現在の出力を取得
-    output = state.get("output")
+    output = source.get("output")
     # 次に実行する行を取得
-    currentLine = state.get("currentLine")
+    currentLine = source.get("currentLine")
     # 関数定義の情報を取得
-    functions = state.get("functions")
+    functions = source.get("functions")
     # 関数呼び出しの情報を取得
-    callStack = state.get("callStack")
+    callStack = source.get("callStack")
     # 最後まで実行ボタンを押したか
-    runButton = state.get("runButton")
+    runButton = source.get("runButton")
 
     # トークンエラーのメッセージを入れる場所(トークンエラーは構文ルール外だからparserに入れられない)
     terror_message = ""
@@ -1711,7 +1709,3 @@ def parse(state):
 
 
     return result
-
-    # json形式にして出力(返す)
-    # ensure_ascii=False : 非ASCII文字をエスケープしない（文字化け防止）
-    #print(json.dumps(result, ensure_ascii=False))
