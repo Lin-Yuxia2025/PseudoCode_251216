@@ -291,7 +291,7 @@ def parse(source):
         # エラーの原因となった 文字列(t.value) を出力
         message = f"字句解析エラー\n{currentLine + 1}行目:   '{t.value}'"
         print(message, file=sys.stderr)
-        global terror_message                                       # perserが使えないから、globalのterrorに入れる
+        nonlocal terror_message                                       # perserが使えないから、globalのterrorに入れる
         terror_message = message
         # エラーの原因となった文字列(t.valueの桁)を全てスキップ
         t.lexer.skip(len(t.value))
@@ -1342,7 +1342,7 @@ def parse(source):
 
     def p_error(p):                                        # エラー時には、p に None が渡されている
         # エラーを起こしたトークンと値を報告
-        global oerror_message                              # parserが使えないから、globalの oerror に入れる
+        nonlocal oerror_message                              # parserが使えないから、globalの oerror に入れる
         if p:
             message = f"構文エラー\n{currentLine + 1}行目:   ' {p.value} '"
             print(message, file=sys.stderr)
